@@ -1,0 +1,46 @@
+body {
+    margin: 4em;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+fieldset {
+    margin: 2em 0;
+    padding: 1.5em;
+}
+
+p:first-of-type {
+    margin-top: 0;
+}
+
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+label {
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 2em 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
