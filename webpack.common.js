@@ -7,9 +7,6 @@ module.exports = {
         './src/scripts.js',
         './src/styles.css',
     ],
-    devServer: {
-        contentBase: './dist',
-    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
