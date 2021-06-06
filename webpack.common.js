@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
         './src/scripts.js',
-        './src/styles.css',
+        './src/styles.scss',
     ],
     plugins: [
         new MiniCssExtractPlugin({
@@ -25,8 +25,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                test: /\.s[ac]ss$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
         ],
     },
