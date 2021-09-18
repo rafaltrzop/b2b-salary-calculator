@@ -1,116 +1,114 @@
 <!DOCTYPE html>
 <html lang="pl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title><%= htmlWebpackPlugin.options.title %></title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
 
-    <body>
-        <main>
-            <h1><%= htmlWebpackPlugin.options.title %></h1>
-            <form id="invoice-value-form">
-                <fieldset>
-                    <legend>Wejście</legend>
+  <body>
+    <main>
+      <h1><%= htmlWebpackPlugin.options.title %></h1>
+      <form id="invoice-value-form">
+        <fieldset>
+          <legend>Wejście</legend>
 
-                    <p>
-                        <label>
-                            Miesięczne ryczałtowe wynagrodzenie netto [PLN]:
-                            <br>
-                            <input
-                                id="salary"
-                                type="number"
-                                min="0"
-                                required
-                            >
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Miesięczne ryczałtowe wynagrodzenie netto [PLN]:
+              <br />
+              <input id="salary" type="number" min="0" required />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Stawka za dzień chorobowy [%]:
-                            <br>
-                            <input
-                                id="sick-daily-rate-factor"
-                                type="number"
-                                min="0"
-                                max="100"
-                                value="80"
-                                required
-                            >
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Stawka za dzień chorobowy [%]:
+              <br />
+              <input
+                id="sick-daily-rate-factor"
+                type="number"
+                min="0"
+                max="100"
+                value="80"
+                required
+              />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Liczba dni chorobowych:
-                            <br>
-                            <input
-                                id="sick-days-count"
-                                type="number"
-                                min="0"
-                                max="21"
-                                value="0"
-                                required
-                            >
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Liczba dni chorobowych:
+              <br />
+              <input
+                id="sick-days-count"
+                type="number"
+                min="0"
+                max="21"
+                value="0"
+                required
+              />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Liczba dni przepracowanych (wliczając dni chorobowe):
-                            <br>
-                            <input
-                                id="work-days-count"
-                                type="number"
-                                min="0"
-                                max="21"
-                                value="21"
-                                required
-                            >
-                        </label>
-                    </p>
-                </fieldset>
+          <p>
+            <label>
+              Liczba dni przepracowanych (wliczając dni chorobowe):
+              <br />
+              <input
+                id="work-days-count"
+                type="number"
+                min="0"
+                max="21"
+                value="21"
+                required
+              />
+            </label>
+          </p>
+        </fieldset>
 
-                <button>Oblicz</button>
+        <button>Oblicz</button>
 
-                <fieldset>
-                    <legend>Wyjście</legend>
+        <fieldset>
+          <legend>Wyjście</legend>
 
-                    <p>
-                        <label>
-                            Stawka netto za godzinę [PLN]:
-                            <br>
-                            <input id="hourly-rate" type="number" disabled>
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Stawka netto za godzinę [PLN]:
+              <br />
+              <input id="hourly-rate" type="number" disabled />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Stawka netto za dzień [PLN]:
-                            <br>
-                            <input id="daily-rate" type="number" disabled>
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Stawka netto za dzień [PLN]:
+              <br />
+              <input id="daily-rate" type="number" disabled />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Stawka netto za dzień chorobowy [PLN]:
-                            <br>
-                            <input id="sick-daily-rate" type="number" disabled>
-                        </label>
-                    </p>
+          <p>
+            <label>
+              Stawka netto za dzień chorobowy [PLN]:
+              <br />
+              <input id="sick-daily-rate" type="number" disabled />
+            </label>
+          </p>
 
-                    <p>
-                        <label>
-                            Kwota netto do wystawienia na fakturze [PLN]:
-                            <br>
-                            <input id="invoice-value" type="number" disabled>
-                        </label>
-                    </p>
-                </fieldset>
-            </form>
-        </main>
-    </body>
+          <p>
+            <label>
+              Kwota netto do wystawienia na fakturze [PLN]:
+              <br />
+              <input id="invoice-value" type="number" disabled />
+            </label>
+          </p>
+        </fieldset>
+      </form>
+    </main>
+  </body>
 </html>
