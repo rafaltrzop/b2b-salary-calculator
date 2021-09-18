@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
+    "lint": "npm run lint:format",
     "lint:format": "prettier --check .",
     "lint:format:fix": "prettier --write .",
     "build": "webpack --config webpack.prod.js"
