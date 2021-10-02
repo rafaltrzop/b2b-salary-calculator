@@ -2,6 +2,7 @@ import { add, divide, multiply } from 'mathjs';
 
 function calculateInvoiceValue(event) {
   event.preventDefault();
+  document.querySelector('#calc-output').classList.remove('fieldset_hidden');
 
   const salary = document.querySelector('#salary').valueAsNumber;
   const sickDailyRateFactor = divide(
@@ -16,26 +17,34 @@ function calculateInvoiceValue(event) {
 
   const hourlyRate = divide(salary, 168);
   const hourlyRateInput = document.querySelector('#hourly-rate');
-  hourlyRateInput.value = hourlyRate.toFixed(2);
-  hourlyRateInput.title = hourlyRate;
+  hourlyRateInput.textContent = formatCurrency(hourlyRate);
+  hourlyRateInput.title = hourlyRate.toLocaleString();
 
   const dailyRate = divide(salary, 21);
   const dailyRateInput = document.querySelector('#daily-rate');
-  dailyRateInput.value = dailyRate.toFixed(2);
-  dailyRateInput.title = dailyRate;
+  dailyRateInput.textContent = formatCurrency(dailyRate);
+  dailyRateInput.title = dailyRate.toLocaleString();
 
   const sickDailyRate = multiply(dailyRate, sickDailyRateFactor);
   const sickDailyRateInput = document.querySelector('#sick-daily-rate');
-  sickDailyRateInput.value = sickDailyRate.toFixed(2);
-  sickDailyRateInput.title = sickDailyRate;
+  sickDailyRateInput.textContent = formatCurrency(sickDailyRate);
+  sickDailyRateInput.title = sickDailyRate.toLocaleString();
 
   const invoiceValue = add(
     multiply(normalDaysCount, dailyRate),
     multiply(sickDaysCount, sickDailyRate)
   );
   const invoiceValueInput = document.querySelector('#invoice-value');
-  invoiceValueInput.value = invoiceValue.toFixed(2);
+  invoiceValueInput.textContent = formatCurrency(invoiceValue);
   invoiceValueInput.title = invoiceValue;
+}
+
+function formatCurrency(number) {
+  return number.toLocaleString('pl-PL', {
+    style: 'currency',
+    currency: 'PLN',
+    currencyDisplay: 'code',
+  });
 }
 
 const invoiceValueForm = document.querySelector('#invoice-value-form');

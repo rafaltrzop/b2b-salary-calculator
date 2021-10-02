@@ -4,7 +4,7 @@ $grid-breakpoint-lg: 992px;
 $grid-breakpoint-xl: 1200px;
 $grid-breakpoint-xxl: 1400px;
 
-body {
+.body {
   margin: 1em;
   font-family: sans-serif;
 
@@ -13,12 +13,13 @@ body {
   }
 }
 
-main {
+.main {
   max-width: 520px;
   margin: 0 auto;
 }
 
-h1 {
+.header {
+  margin: 0;
   text-align: center;
   font-size: 1.2em;
 
@@ -27,17 +28,22 @@ h1 {
   }
 }
 
-fieldset {
+.fieldset {
   margin: 1em 0;
   padding: 1em;
+  border: 2px solid #000;
 
   @media (min-width: $grid-breakpoint-md) {
     margin: 2em 0;
     padding: 2em;
   }
+
+  &_hidden {
+    display: none;
+  }
 }
 
-p {
+.paragraph {
   &:first-of-type {
     margin-top: 0;
   }
@@ -45,20 +51,32 @@ p {
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  &__label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__value {
+    margin-top: 0.5em;
+  }
 }
 
-label {
-  font-weight: 600;
-}
-
-input {
+.input {
   width: 100%;
-  margin-top: 0.5em;
   padding: 0.5em;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: monospace;
 }
 
-button {
+.number {
+  display: block;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.button {
   display: block;
   width: 100%;
   margin: 1em 0;
