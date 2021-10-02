@@ -15,19 +15,27 @@ function calculateInvoiceValue(event) {
   const normalDaysCount = workDaysCount - sickDaysCount;
 
   const hourlyRate = divide(salary, 168);
-  document.querySelector('#hourly-rate').value = hourlyRate;
+  const hourlyRateInput = document.querySelector('#hourly-rate');
+  hourlyRateInput.value = hourlyRate.toFixed(2);
+  hourlyRateInput.title = hourlyRate;
 
   const dailyRate = divide(salary, 21);
-  document.querySelector('#daily-rate').value = dailyRate;
+  const dailyRateInput = document.querySelector('#daily-rate');
+  dailyRateInput.value = dailyRate.toFixed(2);
+  dailyRateInput.title = dailyRate;
 
   const sickDailyRate = multiply(dailyRate, sickDailyRateFactor);
-  document.querySelector('#sick-daily-rate').value = sickDailyRate;
+  const sickDailyRateInput = document.querySelector('#sick-daily-rate');
+  sickDailyRateInput.value = sickDailyRate.toFixed(2);
+  sickDailyRateInput.title = sickDailyRate;
 
   const invoiceValue = add(
     multiply(normalDaysCount, dailyRate),
     multiply(sickDaysCount, sickDailyRate)
   );
-  document.querySelector('#invoice-value').value = invoiceValue;
+  const invoiceValueInput = document.querySelector('#invoice-value');
+  invoiceValueInput.value = invoiceValue.toFixed(2);
+  invoiceValueInput.title = invoiceValue;
 }
 
 const invoiceValueForm = document.querySelector('#invoice-value-form');
