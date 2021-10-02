@@ -33,7 +33,7 @@
           <legend>Wejście</legend>
 
           <p class="paragraph">
-            <label class="paragraph__label" for="salary">
+            <label class="paragraph__label paragraph__label_bold" for="salary">
               Miesięczne ryczałtowe wynagrodzenie netto [PLN]:
             </label>
             <input
@@ -46,7 +46,28 @@
           </p>
 
           <p class="paragraph">
-            <label class="paragraph__label" for="sick-daily-rate-factor">
+            <input id="sick-leave" type="checkbox" />
+            <label class="paragraph__label" for="sick-leave">
+              Zwolnienie lekarskie
+            </label>
+          </p>
+
+          <p class="paragraph">
+            <input id="part-time" type="checkbox" />
+            <label class="paragraph__label" for="part-time">
+              Niepełny miesiąc
+            </label>
+          </p>
+        </fieldset>
+
+        <fieldset id="sick-leave-fieldset" class="fieldset fieldset_hidden">
+          <legend>Zwolnienie lekarskie</legend>
+
+          <p class="paragraph">
+            <label
+              class="paragraph__label paragraph__label_bold"
+              for="sick-daily-rate-factor"
+            >
               Stawka za dzień chorobowy [%]:
             </label>
             <input
@@ -56,12 +77,14 @@
               min="0"
               max="100"
               value="80"
-              required
             />
           </p>
 
           <p class="paragraph">
-            <label class="paragraph__label" for="sick-days-count">
+            <label
+              class="paragraph__label paragraph__label_bold"
+              for="sick-days-count"
+            >
               Liczba dni chorobowych:
             </label>
             <input
@@ -70,14 +93,18 @@
               type="number"
               min="0"
               max="21"
-              value="0"
-              required
             />
           </p>
+        </fieldset>
 
+        <fieldset id="part-time-fieldset" class="fieldset fieldset_hidden">
+          <legend>Niepełny miesiąc</legend>
           <p class="paragraph">
-            <label class="paragraph__label" for="work-days-count">
-              Liczba dni przepracowanych (wliczając dni chorobowe):
+            <label
+              class="paragraph__label paragraph__label_bold"
+              for="work-days-count"
+            >
+              Liczba dni świadczenia usług:
             </label>
             <input
               id="work-days-count"
@@ -85,15 +112,13 @@
               type="number"
               min="0"
               max="21"
-              value="21"
-              required
             />
           </p>
         </fieldset>
 
         <button class="button">Oblicz</button>
 
-        <fieldset id="calc-output" class="fieldset fieldset_hidden">
+        <fieldset id="calc-output-fieldset" class="fieldset fieldset_hidden">
           <legend>Wyjście</legend>
 
           <p class="paragraph">
@@ -104,13 +129,6 @@
           <p class="paragraph">
             <strong class="paragraph__label">Stawka netto za dzień:</strong>
             <span id="daily-rate" class="paragraph__value number"></span>
-          </p>
-
-          <p class="paragraph">
-            <strong class="paragraph__label">
-              Stawka netto za dzień chorobowy:
-            </strong>
-            <span id="sick-daily-rate" class="paragraph__value number"></span>
           </p>
 
           <p class="paragraph">

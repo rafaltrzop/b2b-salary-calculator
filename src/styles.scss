@@ -54,7 +54,10 @@ $grid-breakpoint-xxl: 1400px;
 
   &__label {
     font-size: 16px;
-    font-weight: 600;
+
+    &_bold {
+      font-weight: 600;
+    }
   }
 
   &__value {
