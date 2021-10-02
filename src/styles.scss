@@ -90,3 +90,24 @@ $grid-breakpoint-xxl: 1400px;
     margin: 2em 0;
   }
 }
+
+.footer {
+  margin-top: 2em;
+
+  @media (min-width: $grid-breakpoint-md) {
+    margin-top: 4em;
+  }
+
+  &__copyright {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  &__anchor {
+    color: #000;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
