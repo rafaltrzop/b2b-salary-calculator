@@ -1,12 +1,14 @@
 import { add, divide, multiply } from 'mathjs';
 
-const sickDailyRateFactorInput = document.querySelector(
+const sickDailyRateFactorInput = document.querySelector<HTMLInputElement>(
   '#sick-daily-rate-factor'
 );
-const sickDaysCountInput = document.querySelector('#sick-days-count');
-const workDaysCountInput = document.querySelector('#work-days-count');
+const sickDaysCountInput =
+  document.querySelector<HTMLInputElement>('#sick-days-count');
+const workDaysCountInput =
+  document.querySelector<HTMLInputElement>('#work-days-count');
 
-function toggleSickLeaveFieldset() {
+function toggleSickLeaveFieldset(): void {
   sickDailyRateFactorInput.toggleAttribute('required');
   sickDaysCountInput.toggleAttribute('required');
   document
@@ -14,20 +16,21 @@ function toggleSickLeaveFieldset() {
     .classList.toggle('fieldset_hidden');
 }
 
-function togglePartTimeFieldset() {
+function togglePartTimeFieldset(): void {
   workDaysCountInput.toggleAttribute('required');
   document
     .querySelector('#part-time-fieldset')
     .classList.toggle('fieldset_hidden');
 }
 
-function calculateInvoiceValue(event) {
+function calculateInvoiceValue(event: SubmitEvent): void {
   event.preventDefault();
   document
     .querySelector('#calc-output-fieldset')
     .classList.remove('fieldset_hidden');
 
-  const salary = document.querySelector('#salary').valueAsNumber;
+  const salary =
+    document.querySelector<HTMLInputElement>('#salary').valueAsNumber;
 
   let sickDailyRateFactor = 1;
   let sickDaysCount = 0;
@@ -43,27 +46,30 @@ function calculateInvoiceValue(event) {
   const normalDaysCount = workDaysCount - sickDaysCount;
 
   const hourlyRate = divide(salary, 168);
-  const hourlyRateElement = document.querySelector('#hourly-rate');
+  const hourlyRateElement =
+    document.querySelector<HTMLSpanElement>('#hourly-rate');
   hourlyRateElement.textContent = formatCurrency(hourlyRate);
-  hourlyRateElement.title = hourlyRate.toLocaleString();
+  hourlyRateElement.title = formatNumber(hourlyRate);
 
   const dailyRate = divide(salary, 21);
-  const dailyRateElement = document.querySelector('#daily-rate');
+  const dailyRateElement =
+    document.querySelector<HTMLSpanElement>('#daily-rate');
   dailyRateElement.textContent = formatCurrency(dailyRate);
-  dailyRateElement.title = dailyRate.toLocaleString();
+  dailyRateElement.title = formatNumber(dailyRate);
 
   const sickDailyRate = multiply(dailyRate, sickDailyRateFactor);
 
   const invoiceValue = add(
     multiply(normalDaysCount, dailyRate),
     multiply(sickDaysCount, sickDailyRate)
-  );
-  const invoiceValueElement = document.querySelector('#invoice-value');
+  ) as number;
+  const invoiceValueElement =
+    document.querySelector<HTMLSpanElement>('#invoice-value');
   invoiceValueElement.textContent = formatCurrency(invoiceValue);
-  invoiceValueElement.title = invoiceValue;
+  invoiceValueElement.title = formatNumber(invoiceValue);
 }
 
-function formatCurrency(number) {
+function formatCurrency(number: number): string {
   return number.toLocaleString('pl-PL', {
     style: 'currency',
     currency: 'PLN',
@@ -71,11 +77,18 @@ function formatCurrency(number) {
   });
 }
 
-const sickLeaveCheckbox = document.querySelector('#sick-leave');
+function formatNumber(number: number): string {
+  return number.toLocaleString('pl-PL');
+}
+
+const sickLeaveCheckbox =
+  document.querySelector<HTMLInputElement>('#sick-leave');
 sickLeaveCheckbox.addEventListener('change', toggleSickLeaveFieldset);
 
-const partTimeCheckbox = document.querySelector('#part-time');
+const partTimeCheckbox = document.querySelector<HTMLInputElement>('#part-time');
 partTimeCheckbox.addEventListener('change', togglePartTimeFieldset);
 
-const invoiceValueForm = document.querySelector('#invoice-value-form');
+const invoiceValueForm = document.querySelector<HTMLFormElement>(
+  '#invoice-value-form'
+);
 invoiceValueForm.addEventListener('submit', calculateInvoiceValue);
