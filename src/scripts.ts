@@ -1,7 +1,7 @@
-import { add, divide, multiply } from 'mathjs';
+import { SalaryCalculator } from './salary-calculator';
 
-const sickDailyRateFactorInput = document.querySelector<HTMLInputElement>(
-  '#sick-daily-rate-factor'
+const sickDailyRatePercentageInput = document.querySelector<HTMLInputElement>(
+  '#sick-daily-rate-percentage'
 );
 const sickDaysCountInput =
   document.querySelector<HTMLInputElement>('#sick-days-count');
@@ -9,7 +9,7 @@ const workDaysCountInput =
   document.querySelector<HTMLInputElement>('#work-days-count');
 
 function toggleSickLeaveFieldset(): void {
-  sickDailyRateFactorInput.toggleAttribute('required');
+  sickDailyRatePercentageInput.toggleAttribute('required');
   sickDaysCountInput.toggleAttribute('required');
   document
     .querySelector('#sick-leave-fieldset')
@@ -29,40 +29,39 @@ function calculateInvoiceValue(event: SubmitEvent): void {
     .querySelector('#calc-output-fieldset')
     .classList.remove('fieldset_hidden');
 
-  const salary =
-    document.querySelector<HTMLInputElement>('#salary').valueAsNumber;
+  const salaryInput = document.querySelector<HTMLInputElement>('#salary');
+  const salary = salaryInput.valueAsNumber;
 
-  let sickDailyRateFactor = 1;
-  let sickDaysCount = 0;
+  let sickDailyRatePercentage;
+  let sickDaysCount;
   if (sickLeaveCheckbox.checked) {
-    sickDailyRateFactor = divide(sickDailyRateFactorInput.valueAsNumber, 100);
+    sickDailyRatePercentage = sickDailyRatePercentageInput.valueAsNumber;
     sickDaysCount = sickDaysCountInput.valueAsNumber;
   }
 
-  let workDaysCount = 21;
+  let workDaysCount;
   if (partTimeCheckbox.checked) {
     workDaysCount = workDaysCountInput.valueAsNumber;
   }
-  const normalDaysCount = workDaysCount - sickDaysCount;
 
-  const hourlyRate = divide(salary, 168);
+  const salaryCalculator = new SalaryCalculator(
+    salary,
+    sickDailyRatePercentage,
+    sickDaysCount,
+    workDaysCount
+  );
+  const { hourlyRate, dailyRate, invoiceValue } = salaryCalculator;
+
   const hourlyRateElement =
     document.querySelector<HTMLSpanElement>('#hourly-rate');
   hourlyRateElement.textContent = formatCurrency(hourlyRate);
   hourlyRateElement.title = formatNumber(hourlyRate);
 
-  const dailyRate = divide(salary, 21);
   const dailyRateElement =
     document.querySelector<HTMLSpanElement>('#daily-rate');
   dailyRateElement.textContent = formatCurrency(dailyRate);
   dailyRateElement.title = formatNumber(dailyRate);
 
-  const sickDailyRate = multiply(dailyRate, sickDailyRateFactor);
-
-  const invoiceValue = add(
-    multiply(normalDaysCount, dailyRate),
-    multiply(sickDaysCount, sickDailyRate)
-  ) as number;
   const invoiceValueElement =
     document.querySelector<HTMLSpanElement>('#invoice-value');
   invoiceValueElement.textContent = formatCurrency(invoiceValue);
