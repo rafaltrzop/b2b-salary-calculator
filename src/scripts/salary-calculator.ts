@@ -32,6 +32,9 @@ export class SalaryCalculator {
   }
 
   private get normalDaysCount(): number {
+    if (this.workDaysCount < this.sickDaysCount) {
+      this.sickDaysCount = this.workDaysCount;
+    }
     return this.workDaysCount - this.sickDaysCount;
   }
 }
