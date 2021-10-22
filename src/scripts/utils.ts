@@ -56,12 +56,12 @@ export function calculateInvoiceValue(event: SubmitEvent): void {
     workDaysCount = workDaysCountInput.valueAsNumber;
   }
 
-  const { hourlyRate, dailyRate, invoiceValue } = new SalaryCalculator(
+  const { hourlyRate, dailyRate, invoiceValue } = new SalaryCalculator({
     salary,
     sickDailyRatePercentage,
     sickDaysCount,
-    workDaysCount
-  );
+    workDaysCount,
+  });
 
   hourlyRateSpan.textContent = formatCurrency(hourlyRate);
   hourlyRateSpan.title = formatNumber(hourlyRate);
