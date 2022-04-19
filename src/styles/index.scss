@@ -79,6 +79,15 @@ $grid-breakpoint-xxl: 1400px;
   font-family: monospace;
 }
 
+.donate {
+  margin-top: 2em;
+  text-align: center;
+
+  &__button {
+    width: 150px;
+  }
+}
+
 .button {
   display: block;
   width: 100%;
